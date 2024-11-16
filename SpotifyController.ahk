@@ -1,5 +1,5 @@
 ﻿#Requires AutoHotkey v2.0
-#include ../UIA.ahk
+#include UIA-v2/Lib/UIA.ahk
 
 isSpotifyActive() {
     return WinExist("ahk_exe Spotify.exe")
@@ -65,7 +65,7 @@ if isSpotifyActive() {
 
     global isTransparent
     ; hide taskbar
-    ;WinHide "ahk_class Shell_TrayWnd"
+    ; WinHide "ahk_class Shell_TrayWnd"
     RunWait "C:\Users\tromb\AppData\Roaming\Spotify\Spotify.exe"
     SpotifyEl := UIA.ElementFromHandle("ahk_exe Spotify.exe") ; Reacquire the Spotify element
     SpotifyEl.ElementFromPath("VRr0r").Click()
@@ -74,7 +74,7 @@ if isSpotifyActive() {
         WinMinimize("ahk_exe Spotify.exe")
     }
     ; show taskbar
-    ;WinShow "ahk_class Shell_TrayWnd"
+    ; WinShow "ahk_class Shell_TrayWnd"
 }
 
 ; Hotkey to skip to the next track
@@ -85,7 +85,7 @@ if isSpotifyActive() {
 
     global isTransparent
     ; hide taskbar
-    ;WinHide "ahk_class Shell_TrayWnd"
+    ; WinHide "ahk_class Shell_TrayWnd"
     RunWait "C:\Users\tromb\AppData\Roaming\Spotify\Spotify.exe"
     SpotifyEl := UIA.ElementFromHandle("ahk_exe Spotify.exe") ; Reacquire the Spotify element
     SpotifyEl.ElementFromPath("VRr0s").Click()
@@ -94,7 +94,7 @@ if isSpotifyActive() {
         WinMinimize("ahk_exe Spotify.exe")
     }
     ; show taskbar
-    ;WinShow "ahk_class Shell_TrayWnd"
+    ; WinShow "ahk_class Shell_TrayWnd"
 }
 
 ; Hotkey to go to the previous track
@@ -105,7 +105,7 @@ if isSpotifyActive() {
 
     global isTransparent
     ; hide taskbar
-    ;WinHide "ahk_class Shell_TrayWnd"
+    ; WinHide "ahk_class Shell_TrayWnd"
     RunWait "C:\Users\tromb\AppData\Roaming\Spotify\Spotify.exe"
     SpotifyEl := UIA.ElementFromHandle("ahk_exe Spotify.exe") ; Reacquire the Spotify element
     SpotifyEl.ElementFromPath("VRr0q").Click()
@@ -114,7 +114,7 @@ if isSpotifyActive() {
         WinMinimize("ahk_exe Spotify.exe")
     }
     ; show taskbar
-    ;WinShow "ahk_class Shell_TrayWnd"
+    ; WinShow "ahk_class Shell_TrayWnd"
 }
 
 ; Hotkey to toggle mute Spotify
