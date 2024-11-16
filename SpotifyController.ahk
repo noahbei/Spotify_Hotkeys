@@ -1,13 +1,13 @@
 ﻿#Requires AutoHotkey v2.0
 #include ../UIA.ahk
 
-if WinExist("ahk_exe Spotify.exe") {
-    SpotifyEl := UIA.ElementFromHandle("ahk_exe Spotify.exe")
-    isTransparent := (WinGetTransparent("ahk_exe Spotify.exe") = 0)
+isSpotifyActive() {
+    return WinExist("ahk_exe Spotify.exe")
 }
 
-checkSpotifyActive() {
-    return WinExist("ahk_exe Spotify.exe")
+if isSpotifyActive() {
+    SpotifyEl := UIA.ElementFromHandle("ahk_exe Spotify.exe")
+    isTransparent := (WinGetTransparent("ahk_exe Spotify.exe") = 0)
 }
 
 ; ; Function to change volume of all Spotify processes
@@ -41,7 +41,7 @@ checkSpotifyActive() {
 ^!+F1:: ; Ctrl + Alt + Shift + F1
 {
     ; ChangeSpotifyVolume("increase")
-    if (checkSpotifyActive())
+    if !isSpotifyActive()
         Return
     
     Run "nircmd changeappvolume spotify.exe 0.05"
@@ -51,7 +51,7 @@ checkSpotifyActive() {
 ^!+F2:: ; Ctrl + Alt + Shift + F2
 {
     ; ChangeSpotifyVolume("decrease")
-    if (checkSpotifyActive())
+    if !isSpotifyActive()
         Return
 
     Run "nircmd changeappvolume spotify.exe -0.05"
@@ -60,6 +60,9 @@ checkSpotifyActive() {
 ; Hotkey to play/pause Spotify
 ^!+F3:: ; Ctrl + Alt + Shift + F3
 {
+    if !isSpotifyActive()
+        Return
+
     global isTransparent
     try {
         if WinExist("ahk_exe Spotify.exe")
@@ -86,6 +89,9 @@ checkSpotifyActive() {
 ; Hotkey to skip to the next track
 ^!+F4:: ; Ctrl + Alt + Shift + F4
 {
+    if !isSpotifyActive()
+        Return
+
     try {
         if WinExist("ahk_exe Spotify.exe")
         {
@@ -98,6 +104,9 @@ checkSpotifyActive() {
 ; Hotkey to go to the previous track
 ^!+F5:: ; Ctrl + Alt + Shift + F5
 {
+    if !isSpotifyActive()
+        Return
+
     try {
         if WinExist("ahk_exe Spotify.exe")
         {
@@ -109,24 +118,36 @@ checkSpotifyActive() {
 ; Hotkey to toggle mute Spotify
 ^!+F6:: ; Ctrl + Alt + Shift + F6
 {
+    if !isSpotifyActive()
+        Return
+
     RunWait "nircmd.exe muteappvolume /45424 2"
 }
 
 ; Hotkey to open Spotify
 ^!+F7:: ; Ctrl + Alt + Shift + F7
 {
+    if !isSpotifyActive()
+        Return
+
     RunWait "C:\Users\tromb\AppData\Roaming\Spotify\Spotify.exe"
 }
 
 ; Hotkey to close Spotify
 ^!+F8:: ; Ctrl + Alt + Shift + F8
 {
+    if !isSpotifyActive()
+        Return
+
     ; RunWait "taskkill /IM Spotify.exe /F"
     WinMinimize("ahk_exe Spotify.exe")
 }
 
 ^!+F9:: ; Ctrl + Alt + Shift + F8
 {
+    if !isSpotifyActive()
+        Return
+
     ;WinShow "ahk_class Shell_TrayWnd"
     global isTransparent
     isTransparent := !isTransparent
