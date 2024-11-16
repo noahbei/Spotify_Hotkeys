@@ -64,25 +64,17 @@ if isSpotifyActive() {
         Return
 
     global isTransparent
-    if WinExist("ahk_exe Spotify.exe")
-    {
-        ; WinSetTransparent 255, "ahk_exe Spotify.exe"
-        ; hide taskbar
-        ;WinHide "ahk_class Shell_TrayWnd"
-        RunWait "C:\Users\tromb\AppData\Roaming\Spotify\Spotify.exe"
-        SpotifyEl := UIA.ElementFromHandle("ahk_exe Spotify.exe") ; Reacquire the Spotify element
-        SpotifyEl.ElementFromPath("VRr0r").Click()
-        ; if it transparent that means I don't want to see it so minimize
-        if (isTransparent) {
-            WinMinimize("ahk_exe Spotify.exe")
-        }
-        ; show taskbar
-        ;WinShow "ahk_class Shell_TrayWnd"
-        ; WinShow "ahk_exe Spotify.exe"
-        ; Optional: Remove WS_EX_TOOLWINDOW style if you want it back
-        ; WinSetExStyle("^0x80", "ahk_exe Spotify.exe") ; Toggle WS_EX_TOOLWINDOW back
+    ; hide taskbar
+    ;WinHide "ahk_class Shell_TrayWnd"
+    RunWait "C:\Users\tromb\AppData\Roaming\Spotify\Spotify.exe"
+    SpotifyEl := UIA.ElementFromHandle("ahk_exe Spotify.exe") ; Reacquire the Spotify element
+    SpotifyEl.ElementFromPath("VRr0r").Click()
+    ; if it transparent that means I don't want to see it so minimize
+    if (isTransparent) {
+        WinMinimize("ahk_exe Spotify.exe")
     }
-
+    ; show taskbar
+    ;WinShow "ahk_class Shell_TrayWnd"
 }
 
 ; Hotkey to skip to the next track
@@ -91,7 +83,18 @@ if isSpotifyActive() {
     if !isSpotifyActive()
         Return
 
+    global isTransparent
+    ; hide taskbar
+    ;WinHide "ahk_class Shell_TrayWnd"
+    RunWait "C:\Users\tromb\AppData\Roaming\Spotify\Spotify.exe"
+    SpotifyEl := UIA.ElementFromHandle("ahk_exe Spotify.exe") ; Reacquire the Spotify element
     SpotifyEl.ElementFromPath("VRr0s").Click()
+    ; if it transparent that means I don't want to see it so minimize
+    if (isTransparent) {
+        WinMinimize("ahk_exe Spotify.exe")
+    }
+    ; show taskbar
+    ;WinShow "ahk_class Shell_TrayWnd"
 }
 
 ; Hotkey to go to the previous track
@@ -100,7 +103,18 @@ if isSpotifyActive() {
     if !isSpotifyActive()
         Return
 
+    global isTransparent
+    ; hide taskbar
+    ;WinHide "ahk_class Shell_TrayWnd"
+    RunWait "C:\Users\tromb\AppData\Roaming\Spotify\Spotify.exe"
+    SpotifyEl := UIA.ElementFromHandle("ahk_exe Spotify.exe") ; Reacquire the Spotify element
     SpotifyEl.ElementFromPath("VRr0q").Click()
+    ; if it transparent that means I don't want to see it so minimize
+    if (isTransparent) {
+        WinMinimize("ahk_exe Spotify.exe")
+    }
+    ; show taskbar
+    ;WinShow "ahk_class Shell_TrayWnd"
 }
 
 ; Hotkey to toggle mute Spotify
@@ -109,7 +123,7 @@ if isSpotifyActive() {
     if !isSpotifyActive()
         Return
 
-    RunWait "nircmd.exe muteappvolume /45424 2"
+    RunWait "nircmd.exe muteappvolume Spotify.exe 2"
 }
 
 ; Hotkey to open Spotify
