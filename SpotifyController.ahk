@@ -9,6 +9,9 @@ if isSpotifyActive() {
     SpotifyEl := UIA.ElementFromHandle("ahk_exe Spotify.exe")
     isTransparent := (WinGetTransparent("ahk_exe Spotify.exe") = 0)
 }
+else {
+    isTransparent := False
+}
 
 ; ; Function to change volume of all Spotify processes
 ; ChangeSpotifyVolume(direction) {
