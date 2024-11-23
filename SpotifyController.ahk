@@ -145,7 +145,7 @@ else {
     WinMinimize("ahk_exe Spotify.exe")
 }
 
-^!+F9:: ; Ctrl + Alt + Shift + F8
+^!+F9:: ; Ctrl + Alt + Shift + F9
 {
     if !isSpotifyActive()
         Return
