@@ -113,9 +113,9 @@ else {
     SpotifyEl := UIA.ElementFromHandle("ahk_exe Spotify.exe") ; Reacquire the Spotify element
     SpotifyEl.ElementFromPath("VRr0q").Click()
     ; if it transparent that means I don't want to see it so minimize
-    if (isTransparent) {
-        WinMinimize("ahk_exe Spotify.exe")
-    }
+    ; if (isTransparent) {
+    ;     WinMinimize("ahk_exe Spotify.exe")
+    ; }
     ; show taskbar
     ; WinShow "ahk_class Shell_TrayWnd"
 }
@@ -133,6 +133,9 @@ else {
 ^!+F7:: ; Ctrl + Alt + Shift + F7
 {
     RunWait "C:\Users\tromb\AppData\Roaming\Spotify\Spotify.exe"
+    isTransparent := False
+    transparency := isTransparent ? 0 : 255
+    WinSetTransparent transparency, "ahk_exe Spotify.exe"
 }
 
 ; Hotkey to close Spotify
