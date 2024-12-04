@@ -132,6 +132,7 @@ else {
 ; Hotkey to open Spotify
 ^!+F7:: ; Ctrl + Alt + Shift + F7
 {
+    global isTransparent
     RunWait "C:\Users\tromb\AppData\Roaming\Spotify\Spotify.exe"
     isTransparent := False
     transparency := isTransparent ? 0 : 255
@@ -153,8 +154,11 @@ else {
     if !isSpotifyActive()
         Return
 
-    ;WinShow "ahk_class Shell_TrayWnd"
     global isTransparent
+    ; Make window appear when it is toggled to be visible
+    if !isTransparent
+        WinActivate("ahk_exe Spotify.exe")
+
     isTransparent := !isTransparent
     transparency := isTransparent ? 0 : 255
     WinSetTransparent transparency, "ahk_exe Spotify.exe"
