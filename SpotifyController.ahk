@@ -132,11 +132,16 @@ else {
 ; Hotkey to open Spotify
 ^!+F7:: ; Ctrl + Alt + Shift + F7
 {
-    global isTransparent
-    RunWait "C:\Users\tromb\AppData\Roaming\Spotify\Spotify.exe"
-    isTransparent := False
-    transparency := isTransparent ? 0 : 255
-    WinSetTransparent transparency, "ahk_exe Spotify.exe"
+    if (isSpotifyActive()) {
+        WinActivate("ahk_exe Spotify.exe")
+        global isTransparent
+        isTransparent := False
+        transparency := isTransparent ? 0 : 255
+        WinSetTransparent transparency, "ahk_exe Spotify.exe"
+    }
+    else {
+        RunWait "C:\Users\tromb\AppData\Roaming\Spotify\Spotify.exe"
+    }
 }
 
 ; Hotkey to close Spotify
