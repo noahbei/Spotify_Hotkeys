@@ -51,7 +51,7 @@ F15::
     ; WinShow "ahk_class Shell_TrayWnd"
 }
 
-; Hotkey to skip to the next track
+; Hotkey to go to the previous track
 F16::
 {
     if !isSpotifyActive()
@@ -62,7 +62,7 @@ F16::
     ; WinHide "ahk_class Shell_TrayWnd"
     RunWait "C:\Users\tromb\AppData\Roaming\Spotify\Spotify.exe"
     SpotifyEl := UIA.ElementFromHandle("ahk_exe Spotify.exe") ; Reacquire the Spotify element
-    SpotifyEl.ElementFromPath("VRr0s").Click()
+    SpotifyEl.ElementFromPath("VRr0q").Click()
     ; if it transparent that means I don't want to see it so minimize
     if (isTransparent) {
         WinMinimize("ahk_exe Spotify.exe")
@@ -71,7 +71,7 @@ F16::
     ; WinShow "ahk_class Shell_TrayWnd"
 }
 
-; Hotkey to go to the previous track
+; Hotkey to skip to the next track
 F17::
 {
     if !isSpotifyActive()
@@ -82,7 +82,7 @@ F17::
     ; WinHide "ahk_class Shell_TrayWnd"
     RunWait "C:\Users\tromb\AppData\Roaming\Spotify\Spotify.exe"
     SpotifyEl := UIA.ElementFromHandle("ahk_exe Spotify.exe") ; Reacquire the Spotify element
-    SpotifyEl.ElementFromPath("VRr0q").Click()
+    SpotifyEl.ElementFromPath("VRr0s").Click()
     ; if it transparent that means I don't want to see it so minimize
     if (isTransparent) {
         WinMinimize("ahk_exe Spotify.exe")
