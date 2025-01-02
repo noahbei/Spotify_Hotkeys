@@ -14,7 +14,7 @@ else {
 }
 
 ; Hotkey to increase Spotify volume
-^!+F1:: ; Ctrl + Alt + Shift + F1
+F13::
 {
     if !isSpotifyActive()
         Return
@@ -23,7 +23,7 @@ else {
 }
 
 ; Hotkey to decrease Spotify volume
-^!+F2:: ; Ctrl + Alt + Shift + F2
+F14:: ; Ctrl + Alt + Shift + F2
 {
     if !isSpotifyActive()
         Return
@@ -32,7 +32,7 @@ else {
 }
 
 ; Hotkey to play/pause Spotify
-^!+F3:: ; Ctrl + Alt + Shift + F3
+F15::
 {
     if !isSpotifyActive()
         Return
@@ -52,7 +52,7 @@ else {
 }
 
 ; Hotkey to skip to the next track
-^!+F4:: ; Ctrl + Alt + Shift + F4
+F16::
 {
     if !isSpotifyActive()
         Return
@@ -72,7 +72,7 @@ else {
 }
 
 ; Hotkey to go to the previous track
-^!+F5:: ; Ctrl + Alt + Shift + F5
+F17::
 {
     if !isSpotifyActive()
         Return
@@ -92,7 +92,7 @@ else {
 }
 
 ; Hotkey to toggle mute Spotify
-^!+F6:: ; Ctrl + Alt + Shift + F6
+F18::
 {
     if !isSpotifyActive()
         Return
@@ -101,7 +101,7 @@ else {
 }
 
 ; Hotkey to open Spotify
-^!+F7:: ; Ctrl + Alt + Shift + F7
+F19::
 {
     if (isSpotifyActive()) {
         WinActivate("ahk_exe Spotify.exe")
@@ -116,7 +116,7 @@ else {
 }
 
 ; Hotkey to close Spotify
-^!+F8:: ; Ctrl + Alt + Shift + F8
+F20::
 {
     if !isSpotifyActive()
         Return
@@ -124,7 +124,8 @@ else {
     WinMinimize("ahk_exe Spotify.exe")
 }
 
-^!+F9:: ; Ctrl + Alt + Shift + F9
+; Hotkey to toggle Spotify transparency
+F21::
 {
     if !isSpotifyActive()
         Return
@@ -138,6 +139,7 @@ else {
     transparency := isTransparent ? 0 : 255
     WinSetTransparent transparency, "ahk_exe Spotify.exe"
 }
+
 /*
 Error: Invalid index/condition at path index 1
 
