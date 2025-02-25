@@ -40,7 +40,7 @@ F15::
     global isTransparent
     ; hide taskbar
     ; WinHide "ahk_class Shell_TrayWnd"
-    RunWait "C:\Users\tromb\AppData\Roaming\Spotify\Spotify.exe"
+    RunWait A_AppData "\Spotify\Spotify.exe"
     SpotifyEl := UIA.ElementFromHandle("ahk_exe Spotify.exe") ; Reacquire the Spotify element
     SpotifyEl.ElementFromPath("VRr0r").Click()
     ; if it transparent that means I don't want to see it so minimize
@@ -60,7 +60,7 @@ F16::
     global isTransparent
     ; hide taskbar
     ; WinHide "ahk_class Shell_TrayWnd"
-    RunWait "C:\Users\tromb\AppData\Roaming\Spotify\Spotify.exe"
+    RunWait A_AppData "\Spotify\Spotify.exe"
     SpotifyEl := UIA.ElementFromHandle("ahk_exe Spotify.exe") ; Reacquire the Spotify element
     SpotifyEl.ElementFromPath("VRr0q").Click()
     ; if it transparent that means I don't want to see it so minimize
@@ -80,7 +80,7 @@ F17::
     global isTransparent
     ; hide taskbar
     ; WinHide "ahk_class Shell_TrayWnd"
-    RunWait "C:\Users\tromb\AppData\Roaming\Spotify\Spotify.exe"
+    RunWait A_AppData "\Spotify\Spotify.exe"
     SpotifyEl := UIA.ElementFromHandle("ahk_exe Spotify.exe") ; Reacquire the Spotify element
     SpotifyEl.ElementFromPath("VRr0s").Click()
     ; if it transparent that means I don't want to see it so minimize
@@ -111,7 +111,7 @@ F19::
         WinSetTransparent transparency, "ahk_exe Spotify.exe"
     }
     else {
-        RunWait "C:\Users\tromb\AppData\Roaming\Spotify\Spotify.exe"
+        RunWait A_AppData "\Spotify\Spotify.exe"
     }
 }
 
