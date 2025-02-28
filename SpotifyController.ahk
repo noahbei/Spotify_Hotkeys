@@ -15,8 +15,12 @@ getSpotifyElement() {
 pressSpotifyButton(path) {
     SpotifyEl := getSpotifyElement()
     if SpotifyEl {
-        SpotifyEl.ElementFromPath(path).Click()
-        ; minimizeIfTransparent()
+        try {
+            SpotifyEl.ElementFromPath(path).Click()
+        } catch as e {
+            MsgBox "An error was thrown!`nSpecifically: " e.Message
+        }
+        minimizeIfTransparent()
     }
 }
 
