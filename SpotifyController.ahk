@@ -7,6 +7,24 @@ isSpotifyActive() {
     return WinExist("ahk_exe Spotify.exe")
 }
 
+getSpotifyElement() {
+    return isSpotifyActive() ? UIA.ElementFromHandle("ahk_exe Spotify.exe") : ""
+}
+
+pressSpotifyButton(path) {
+    SpotifyEl := getSpotifyElement()
+    if SpotifyEl {
+        SpotifyEl.ElementFromPath(path).Click()
+        ; minimizeIfTransparent()
+    }
+}
+
+minimizeIfTransparent() {
+    global isTransparent
+    if isTransparent
+        WinMinimize("ahk_exe Spotify.exe")
+}
+
 if isSpotifyActive() {
     SpotifyEl := UIA.ElementFromHandle("ahk_exe Spotify.exe")
     isTransparent := (WinGetTransparent("ahk_exe Spotify.exe") = 0)
@@ -36,16 +54,12 @@ F15::
     if !isSpotifyActive()
         Return
 
-    global isTransparent
     ; hide taskbar
     ; WinHide "ahk_class Shell_TrayWnd"
+
     RunWait A_AppData "\Spotify\Spotify.exe"
-    SpotifyEl := UIA.ElementFromHandle("ahk_exe Spotify.exe") ; Reacquire the Spotify element
-    SpotifyEl.ElementFromPath("VRr0r").Click()
-    ; if it transparent that means I don't want to see it so minimize
-    if (isTransparent) {
-        WinMinimize("ahk_exe Spotify.exe")
-    }
+    pressSpotifyButton("VRr0r") ; press the play/pause button
+    
     ; show taskbar
     ; WinShow "ahk_class Shell_TrayWnd"
 }
@@ -56,16 +70,13 @@ F16::
     if !isSpotifyActive()
         Return
 
-    global isTransparent
+    
     ; hide taskbar
     ; WinHide "ahk_class Shell_TrayWnd"
+
     RunWait A_AppData "\Spotify\Spotify.exe"
-    SpotifyEl := UIA.ElementFromHandle("ahk_exe Spotify.exe") ; Reacquire the Spotify element
-    SpotifyEl.ElementFromPath("VRr0q").Click()
-    ; if it transparent that means I don't want to see it so minimize
-    if (isTransparent) {
-        WinMinimize("ahk_exe Spotify.exe")
-    }
+    pressSpotifyButton("VRr0q") ; press previous track button
+
     ; show taskbar
     ; WinShow "ahk_class Shell_TrayWnd"
 }
@@ -76,16 +87,12 @@ F17::
     if !isSpotifyActive()
         Return
 
-    global isTransparent
     ; hide taskbar
     ; WinHide "ahk_class Shell_TrayWnd"
+
     RunWait A_AppData "\Spotify\Spotify.exe"
-    SpotifyEl := UIA.ElementFromHandle("ahk_exe Spotify.exe") ; Reacquire the Spotify element
-    SpotifyEl.ElementFromPath("VRr0s").Click()
-    ; if it transparent that means I don't want to see it so minimize
-    if (isTransparent) {
-        WinMinimize("ahk_exe Spotify.exe")
-    }
+    pressSpotifyButton("VRr0s")
+
     ; show taskbar
     ; WinShow "ahk_class Shell_TrayWnd"
 }
