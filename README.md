@@ -1,6 +1,6 @@
 # Spotify Desktop Controller (AutoHotkey v2.0)
 
-This AutoHotkey script is designed to control the Spotify desktop application, providing customizable hotkeys for tasks such as volume control, play/pause, skipping tracks, muting, and toggling window transparency.
+This AutoHotkey script is designed to control the Spotify desktop application, providing customizable hotkeys for tasks such as volume control, play/pause, skipping tracks, muting, and toggling window transparency. It is designed to be used with a macropad such as the [Printed Pad](https://protadesigns.com/products/printed-pad) - hence why all the hotkeys are set to unused F keys.
 
 ### Requirements:
 - **AutoHotkey v2.0**: The script is written using AutoHotkey v2.0 syntax.
