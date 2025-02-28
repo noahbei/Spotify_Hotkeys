@@ -1,6 +1,8 @@
 ﻿#Requires AutoHotkey v2.0
 #include UIA-v2/Lib/UIA.ahk
 
+isTransparent := False
+
 isSpotifyActive() {
     return WinExist("ahk_exe Spotify.exe")
 }
@@ -8,9 +10,6 @@ isSpotifyActive() {
 if isSpotifyActive() {
     SpotifyEl := UIA.ElementFromHandle("ahk_exe Spotify.exe")
     isTransparent := (WinGetTransparent("ahk_exe Spotify.exe") = 0)
-}
-else {
-    isTransparent := False
 }
 
 ; Hotkey to decrease Spotify volume
