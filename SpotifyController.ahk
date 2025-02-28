@@ -1,7 +1,8 @@
 ﻿#Requires AutoHotkey v2.0
 #include UIA-v2/Lib/UIA.ahk
 
-isTransparent := False
+; flag to set taskbar hiding
+enableHideTaskbar := False
 
 isSpotifyActive() {
     return WinExist("ahk_exe Spotify.exe")
@@ -19,19 +20,29 @@ pressSpotifyButton(path) {
     }
 }
 
+hideTaskbar() {
+    global enableHideTaskbar
+    if enableHideTaskbar {
+        WinHide "ahk_class Shell_TrayWnd"
+    }
+}
+
+showTaskbar() {
+    global enableHideTaskbar
+    if enableHideTaskbar {
+        WinShow "ahk_class Shell_TrayWnd"
+    }
+}
+
 minimizeIfTransparent() {
     global isTransparent
     if isTransparent
         WinMinimize("ahk_exe Spotify.exe")
 }
 
-if isSpotifyActive() {
-    SpotifyEl := UIA.ElementFromHandle("ahk_exe Spotify.exe")
-    isTransparent := (WinGetTransparent("ahk_exe Spotify.exe") = 0)
-}
+isTransparent := isSpotifyActive() && (WinGetTransparent("ahk_exe Spotify.exe") = 0)
 
-; Hotkey to decrease Spotify volume
-F13:: ; Ctrl + Alt + Shift + F2
+F13:: ; Hotkey to decrease Spotify volume
 {
     if !isSpotifyActive()
         Return
@@ -39,8 +50,7 @@ F13:: ; Ctrl + Alt + Shift + F2
     Run "nircmd changeappvolume spotify.exe -0.05"
 }
 
-; Hotkey to increase Spotify volume
-F14::
+F14:: ; Hotkey to increase Spotify volume
 {
     if !isSpotifyActive()
         Return
@@ -48,57 +58,46 @@ F14::
     Run "nircmd changeappvolume spotify.exe 0.05"
 }
 
-; Hotkey to play/pause Spotify
-F15::
+F15:: ; Hotkey to play/pause Spotify
 {
     if !isSpotifyActive()
         Return
 
-    ; hide taskbar
-    ; WinHide "ahk_class Shell_TrayWnd"
+    hideTaskbar()
 
     RunWait A_AppData "\Spotify\Spotify.exe"
     pressSpotifyButton("VRr0r") ; press the play/pause button
     
-    ; show taskbar
-    ; WinShow "ahk_class Shell_TrayWnd"
+    showTaskbar()
 }
 
-; Hotkey to go to the previous track
-F16::
+F16:: ; Hotkey to go to the previous track
 {
     if !isSpotifyActive()
         Return
 
-    
-    ; hide taskbar
-    ; WinHide "ahk_class Shell_TrayWnd"
+    hideTaskbar()
 
     RunWait A_AppData "\Spotify\Spotify.exe"
     pressSpotifyButton("VRr0q") ; press previous track button
 
-    ; show taskbar
-    ; WinShow "ahk_class Shell_TrayWnd"
+    showTaskbar()
 }
 
-; Hotkey to skip to the next track
-F17::
+F17:: ; Hotkey to skip to the next track
 {
     if !isSpotifyActive()
         Return
 
-    ; hide taskbar
-    ; WinHide "ahk_class Shell_TrayWnd"
+    hideTaskbar()
 
     RunWait A_AppData "\Spotify\Spotify.exe"
-    pressSpotifyButton("VRr0s")
+    pressSpotifyButton("VRr0s") ; press next track button
 
-    ; show taskbar
-    ; WinShow "ahk_class Shell_TrayWnd"
+    showTaskbar()
 }
 
-; Hotkey to toggle mute Spotify
-F18::
+F18:: ; Hotkey to toggle mute Spotify
 {
     if !isSpotifyActive()
         Return
@@ -106,8 +105,7 @@ F18::
     RunWait "nircmd.exe muteappvolume Spotify.exe 2"
 }
 
-; Hotkey to open Spotify
-F19::
+F19:: ; Hotkey to open Spotify
 {
     if (isSpotifyActive()) {
         WinActivate("ahk_exe Spotify.exe")
@@ -121,8 +119,7 @@ F19::
     }
 }
 
-; Hotkey to close Spotify
-F20::
+F20:: ; Hotkey to close Spotify
 {
     if !isSpotifyActive()
         Return
@@ -130,8 +127,7 @@ F20::
     WinMinimize("ahk_exe Spotify.exe")
 }
 
-; Hotkey to toggle Spotify transparency
-F21::
+F21:: ; Hotkey to toggle Spotify transparency
 {
     if !isSpotifyActive()
         Return
