@@ -13,22 +13,22 @@ else {
     isTransparent := False
 }
 
-; Hotkey to increase Spotify volume
-F13::
-{
-    if !isSpotifyActive()
-        Return
-    
-    Run "nircmd changeappvolume spotify.exe 0.05"
-}
-
 ; Hotkey to decrease Spotify volume
-F14:: ; Ctrl + Alt + Shift + F2
+F13:: ; Ctrl + Alt + Shift + F2
 {
     if !isSpotifyActive()
         Return
 
     Run "nircmd changeappvolume spotify.exe -0.05"
+}
+
+; Hotkey to increase Spotify volume
+F14::
+{
+    if !isSpotifyActive()
+        Return
+    
+    Run "nircmd changeappvolume spotify.exe 0.05"
 }
 
 ; Hotkey to play/pause Spotify
@@ -139,15 +139,3 @@ F21::
     transparency := isTransparent ? 0 : 255
     WinSetTransparent transparency, "ahk_exe Spotify.exe"
 }
-
-/*
-Error: Invalid index/condition at path index 1
-
-	072: RunWait("C:\Users\tromb\AppData\Roaming\Spotify\Spotify.exe")
-	073: SpotifyEl := UIA.ElementFromHandle("ahk_exe Spotify.exe")
-▶	074: SpotifyEl.ElementFromPath("VRr0r").Click()
-	076: If (isTransparent)
-	076: {
-
-The current thread will exit.
-*/
